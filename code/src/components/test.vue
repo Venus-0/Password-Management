@@ -2,12 +2,13 @@
     <div id="test">
         <p>输入框为{{ msg }}</p>
         <input type="text" v-model='msg'>
-        <button @click='enc'> click</button>
+        <button id="encryp" @click='enc'> 加密</button>
+        <button id="decrypt" @click="unEnc"> 解密</button>
     </div>
 </template>
 
 <script>
-import {RSAencrypt} from '../../static/js/encryption.js'
+import {Encyrption} from '../../static/js/encryption.js'
 export default {
     name:'test',
     data(){
@@ -15,10 +16,17 @@ export default {
             msg:"test"
         }
     },
+    mounted:function(){
+        Encyrption.getRsaKeys()
+    },
     methods:{
         enc:function(){
-            
+            Encyrption.msgEncrypt()
+        },
+        unEnc:function(){
+            Encyrption.msgDecrypt()
         }
+
     }
 }
 </script>
