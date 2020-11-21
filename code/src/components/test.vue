@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import {Encyrption} from '../../static/js/encryption.js'
 export default {
     name:'test',
     data(){
@@ -17,16 +16,10 @@ export default {
         }
     },
     mounted:function(){
-        Encyrption.getRsaKeys()
+        
     },
     methods:{
-        enc:function(){
-            Encyrption.msgEncrypt()
-        },
-        unEnc:function(){
-            Encyrption.msgDecrypt()
-        }
-
+    
     }
 }
 </script>
