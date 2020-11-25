@@ -14,7 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "ajv": "^7.0.0-beta.5",
+    "ajv": "^7.0.0-beta.7",
     "ajv-keywords": "^2.1.1",
     "crypto-js": "^4.0.0",
     "js-hash": "0.0.1",
