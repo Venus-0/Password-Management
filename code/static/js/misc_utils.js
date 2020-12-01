@@ -26,5 +26,3 @@ MiscUtil.base64UrlEncode = (text) => {
 MiscUtil.base64UrlDecode = (base64) => {
     return atob(base64.replace(/\@/g, "+"));
 }
-
-export {MiscUtil}

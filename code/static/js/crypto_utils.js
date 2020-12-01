@@ -73,11 +73,22 @@ CryptoUtil.importPrivateKey = async (key) => {
     return privateKey;
 }
 
-// 使用指定格式导入AES密钥
+// 使用特定的字符串数据导入生成AES密钥
 // @params ArrayBuffer key 二进制状态的AES密钥
 // @return CryptoKey 导入的AES密钥对象
 CryptoUtil.importKey = async (key) => {
-    let aesKey = await window.crypto.subtle.importKey("raw", key, "AES-CBC", true, ["encrypt", "decrypt"]);
+    let buffer = MiscUtil.stringToArrayBuffer(key);
+    let pbkdf2Key = await window.crypto.subtle.importKey("raw", buffer, "PBKDF2", false, ["deriveBits", "deriveKey"]);
+    let aesKey = await window.crypto.subtle.deriveKey({
+        name: "PBKDF2",
+        salt: window.crypto.getRandomValues(new Uint8Array(16)),
+        iterations: 100000,
+        hash: "SHA-256"
+    }, pbkdf2Key, {
+        name: "AES-CBC",
+        length: 256
+    }, true, ["encrypt", "decrypt"]);
+
     return aesKey;
 }
 
@@ -138,5 +149,3 @@ CryptoUtil.decryptRSA = async (cipher, key) => {
 
     return MiscUtil.arrayBufferToString(decrypted);
 }
-
-export {CryptoUtil}
