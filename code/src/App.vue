@@ -1,27 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-link name="/"></router-link>
-    <router-view name="component1"></router-view>
-    <router-view name="component2"></router-view>
     
-    
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'app'
 }
 </script>
 
 <style>
+*{
+  margin: 0 ;
+  padding: 0;
+}
 #app {
+  margin: 0 auto;;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0;
 }
 </style>
