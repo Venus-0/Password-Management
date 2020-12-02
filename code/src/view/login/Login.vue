@@ -2,6 +2,7 @@
   <div id="login">
     <el-row :gutter="0">
       <el-col :span="7" :offset="0" class="col1">
+        <!-- <img src="https://web-001-wyx.oss-cn-shenzhen.aliyuncs.com/passsecured.png" > -->
         <div id="form">
           <el-form
             :model="login"
@@ -13,10 +14,18 @@
               <h2>Login</h2>
             </el-form-item>
             <el-form-item label="" prop="email">
-              <el-input v-model="login.email" placeholder="Emial" clearable :validate-event="false" @blur="emailChecked"></el-input>
+              <el-input
+                autocomplete="false"
+                v-model="login.email"
+                placeholder="Emial"
+                clearable
+                :validate-event="false"
+                @blur="emailChecked"
+              ></el-input>
             </el-form-item>
             <el-form-item label="" prop="password">
               <el-input
+                autocomplete="false"
                 v-model="login.password"
                 placeholder="Password"
                 show-password="true"
@@ -58,10 +67,9 @@ export default {
       loginrules: {
         email: [
           {
-            type: 'email',
+            type: "email",
             required: true,
             message: "Please enter your email",
-            
           },
         ],
         password: [
@@ -85,9 +93,7 @@ export default {
       });
     },
     //当用户输入完邮箱后返回后台验证用户是否存在
-    emailChecked(){
-      
-    }
+    emailChecked() {},
   },
 };
 </script>
