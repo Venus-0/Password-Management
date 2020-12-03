@@ -6,9 +6,9 @@
         <div id="form">
           <div class="title">
             <h1 style="">注册</h1>
-            <h3>
+            <h4>
               填写此表单以访问PassSecured.注意:请妥善保管注册信息,这是您找回密码时的重要凭证
-            </h3>
+            </h4>
           </div>
           <el-form
             :model="signform"
@@ -83,7 +83,7 @@ export default {
   font-size: 12px;
   margin-bottom: 10px;
 }
-.title h3 {
+.title h4 {
   margin-left: 10px;
   margin-top: 5px;
 }
