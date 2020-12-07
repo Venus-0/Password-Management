@@ -134,6 +134,7 @@ export default {
   padding: 0;
 }
 .col1 {
+  /* background-color: rgba(255 , 255, 255, 0.75); */
   background-color: rgba(233, 238, 243, 0.75);
   height: 100%;
   text-align: center;

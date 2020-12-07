@@ -33,6 +33,7 @@
                 clearable
                 @focus="pwdRequired"
                 @input="Pwd2Child"
+                @blur="pwdCheck"
                 :show-password="true"
               ></el-input>
               <transition name="slide">
@@ -93,9 +94,6 @@ export default {
       disable: true,
     };
   },
-  watch:{
-      
-  },
   methods: {
     pwdRequired() {
       //设置密码强度提示
@@ -113,7 +111,9 @@ export default {
       } else {
         this.changeMailStatus(false);
       }
-      
+      if(infoStatus.mailStatus&&infoStatus.pwdStatus&&infoStatus.pwdReCheckStatus){
+        this.changeBtnStatus(false);
+      }
     },
     onSubmit() {
       //注册提交事件
@@ -142,7 +142,15 @@ export default {
       else{
         this.changeReCheckStatus(false);
       }
+      if(infoStatus.mailStatus&&infoStatus.pwdStatus&&infoStatus.pwdReCheckStatus){
+        this.changeBtnStatus(false);
+      }
     },
+    pwdCheck(){
+      if(infoStatus.mailStatus&&infoStatus.pwdStatus&&infoStatus.pwdReCheckStatus){
+        this.changeBtnStatus(false);
+      }
+    }
   },
 };
 </script>
