@@ -1,8 +1,8 @@
 <template>
   <div id="login">
     
-    <el-row :gutter="0">
-      <el-col :span="7" :offset="0" class="col1">
+    <el-row :gutter="0" id="el-row">
+      <el-col :span="5" :offset="0" class="col1">
         <!-- <img src="https://web-001-wyx.oss-cn-shenzhen.aliyuncs.com/passsecured.png" > -->
         <div id="form">
           <el-form
@@ -29,12 +29,10 @@
                 autocomplete="false"
                 v-model="login.password"
                 placeholder="Password"
-                show-password="true"
-                clearable
+                :show-password="true"
                 :validate-event="false"
               ></el-input>
             </el-form-item>
-
             <el-form-item class="forget">
               <el-link type="primary" :underline="false">忘记密码</el-link>
             </el-form-item>
@@ -47,15 +45,17 @@
               >
             </el-form-item>
             <el-form-item class="reg">
-              没有账号？<el-link type="primary" :underline="false">立即注册</el-link>
+              没有账号？<el-link type="primary" :underline="false" href="/signup">立即注册</el-link>
             </el-form-item>
           </el-form>
         </div>
+        <p>图片来自cn.bing.com</p>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+
 export default {
   name: "Login",
   data() {
@@ -64,9 +64,6 @@ export default {
         email: "",
         password: "",
       },
-      
-      url:'https://web-001-wyx.oss-cn-shenzhen.aliyuncs.com/yUkcmOU07CQ.jpg',
-      fits:'cover',
       loginrules: {
         email: [
           {
@@ -84,6 +81,14 @@ export default {
       },
     };
   },
+   mounted:function(){
+      this.$axios({
+        method:'get',
+        url:'https://api.xygeng.cn/Bing/url/',
+      }).then(function(response){
+        document.getElementById('el-row').style.backgroundImage = 'url('+response.data.data+')'  
+      })
+    },
   methods: {
     submitForm(formname) {
       //登录表单验证
@@ -128,16 +133,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-
 .col1 {
-  /* background-color: #d3dce6; */
   background-color: rgba(233, 238, 243, 0.75);
-  height: 100%;
-  text-align: center;
-  line-height: 160px;
-}
-.col2 {
-  background-color: #e9eef3;
   height: 100%;
   text-align: center;
   line-height: 160px;
@@ -156,7 +153,15 @@ export default {
   position: fixed;
 }
 .el-row{
-  background-image: url('https://web-001-wyx.oss-cn-shenzhen.aliyuncs.com/yUkcmOU07CQ.jpg');
+  background-image: url('');
   background-size: cover;
+}
+p{
+  height: 9%;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  
 }
 </style>
