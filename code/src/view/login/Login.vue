@@ -34,7 +34,7 @@
               ></el-input>
             </el-form-item>
             <el-form-item class="forget">
-              <el-link type="primary" :underline="false">忘记密码</el-link>
+              <el-link type="primary" :underline="false" href="/forget">忘记密码</el-link>
             </el-form-item>
             <el-form-item>
               <el-button
@@ -134,11 +134,12 @@ export default {
   padding: 0;
 }
 .col1 {
-  /* background-color: rgba(255 , 255, 255, 0.75); */
-  background-color: rgba(233, 238, 243, 0.75);
+  background-color: rgba(255 , 255, 255, 0.50);
+  /* background-color: rgba(233, 238, 243, 0.75); */
   height: 100%;
   text-align: center;
   line-height: 160px;
+  backdrop-filter: blur(4px);
 }
 .el-row {
   width: 100%;
@@ -156,13 +157,15 @@ export default {
 .el-row{
   background-image: url('');
   background-size: cover;
+  -moz-background-size:cover;
+  -webkit-background-size:cover
 }
 p{
-  height: 9%;
+  height: 10%;
   margin: 0;
   padding: 0;
   position: fixed;
   bottom: 0;
-  
+  left: 0;
 }
 </style>

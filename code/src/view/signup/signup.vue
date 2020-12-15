@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="head"></div>
-    <el-row :gutter="0">
+    <div class="content">
+      <el-row :gutter="0">
       <el-col :span="12" :offset="4">
         <div id="form">
           <div class="title">
@@ -67,6 +68,7 @@
         </div>
       </el-col>
     </el-row>
+    </div>
   </div>
 </template>
 <script>
@@ -172,9 +174,22 @@ export default {
   margin-top: 5px;
 }
 .head {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   background-color: #f0f0f0;
   width: 100%;
   height: 80px;
+}
+.content{
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 /* #form {
     width: 100%;

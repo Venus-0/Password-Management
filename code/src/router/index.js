@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '../view/login/Login'
 import test from '../view/test/test'
 import signup from '../view/signup/signup'
+import forget from '../view/forget/forget'
 
 
 Vue.use(Router)
@@ -24,13 +25,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: signup,
-      // children:[
-      //   {
-      //     path:'signup',
-      //     component: () => import('../components/pwdRequired'),
-      //     name:'pwdRequired',
-      //   }
-      // ]
+    },
+    {
+      path: '/forget',
+      name: 'forget',
+      component: forget
     }
   ]
 })
