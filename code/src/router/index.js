@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '../view/login/Login'
+import login from '../view/login/login'
 import test from '../view/test/test'
 import signup from '../view/signup/signup'
 import forget from '../view/forget/forget'
+import mainForm from '../view/mian/main'
 
 
 Vue.use(Router)
@@ -19,7 +20,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: login
     },
     {
       path: '/signup',
@@ -30,6 +31,11 @@ export default new Router({
       path: '/forget',
       name: 'forget',
       component: forget
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: mainForm
     }
   ]
 })

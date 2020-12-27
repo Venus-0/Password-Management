@@ -161,6 +161,7 @@ export default {
   -webkit-background-size:cover
 }
 p{
+  
   height: 10%;
   margin: 0;
   padding: 0;
