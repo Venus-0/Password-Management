@@ -27,6 +27,15 @@ export default {
 };
 </script>
 <style scoped>
+.title {
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.title h3 {
+    margin-left: 10px;
+    margin-top: 5px;
+}
 .head {
     position: fixed;
     top: 0;

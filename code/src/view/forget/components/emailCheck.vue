@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+var timer;
 export default {
     name: "mailCheck",
     data() {
@@ -36,6 +37,8 @@ export default {
         },
         getMail(){
             //用户输入邮箱后获取验证码
+            console.log(this.mail)
+            this.$store.commit('changeMailAddress',this.mail)
             this.wait(60,document.getElementById('getCode'));
         },
         checkCode(){
@@ -53,12 +56,15 @@ export default {
                 obj.innerHTML="重新发送("+ wait +")";
                 wait--;
                 let that = this;
-                setTimeout(function() {
+                timer = setTimeout(function() {
                     console.log(wait);  
                     that.wait(wait,obj);
                 },1000)
             }
         }
+    },
+    beforeDestory: function () {
+        clearTimeout(timer);
     },
 };
 </script>

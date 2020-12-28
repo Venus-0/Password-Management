@@ -9,7 +9,7 @@
          <el-row  :gutter="0">
             <el-col class="form" :span="12" :offset="6">
                 <el-input class="recoveryText" v-model="mail"  placeholder="输入您的恢复码" size="small" clearable >
-                    <el-button id="recovery" slot="append"  size="default"  @click="checkRecovery()">确定</el-button>
+                    <el-button  slot="append"  size="default"  @click="checkRecovery()">确定</el-button>
                 </el-input>
             </el-col>
         </el-row>

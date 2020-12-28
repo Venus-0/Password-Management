@@ -6,7 +6,7 @@
                 <el-col class="col-title" :span="12" :offset="4">
                     <div id="form">
                         <div class="title">
-                            <h1>重置密码{{$store.state.activeStatus}}</h1>
+                            <h1>重置密码{{ $store.state.activeStatus }}</h1>
                             <h3>忘记密码?请根据引导操作来找回您的密码</h3>
                         </div>
                     </div>
@@ -15,7 +15,7 @@
             <el-row :gutter="0">
                 <el-col class="col-content" :span="12" :offset="6">
                     <el-steps
-                        :active='status'
+                        :active="status"
                         finish-status="success"
                         align-center="true"
                     >
@@ -38,26 +38,26 @@ export default {
     name: "forget",
     data() {
         return {
-            status:0
+            status: 0,
         };
     },
     methods: {},
     watch: {
-        activeStatus:function (newd) {
-            this.status = newd
-        }
+        activeStatus: function (newd) {
+            this.status = newd;
+        },
     },
-    mounted:function() {
+    mounted: function () {
         //刷新网页后重置activeStatus
-        if(this.$store.state.activeStatus!==0){
-            this.$store.commit('changeActiveStatus',0);
+        if (this.$store.state.activeStatus !== 0) {
+            this.$store.commit("changeActiveStatus", 0);
         }
     },
-    computed:{
-        activeStatus:function () {
+    computed: {
+        activeStatus: function () {
             return this.$store.state.activeStatus;
-        }
-    }
+        },
+    },
 };
 </script>
 <style scoped>

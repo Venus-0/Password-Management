@@ -1,14 +1,7 @@
 <template>
     <div id="login">
-        <el-row
-            :gutter="0"
-            id="el-row"
-        >
-            <el-col
-                :span="5"
-                :offset="0"
-                class="col1"
-            >
+        <el-row :gutter="0" id="el-row">
+            <el-col :span="5" :offset="0" class="col1">
                 <!-- <img src="https://web-001-wyx.oss-cn-shenzhen.aliyuncs.com/passsecured.png" > -->
                 <div id="form">
                     <el-form
@@ -20,10 +13,7 @@
                         <el-form-item>
                             <h2>Login</h2>
                         </el-form-item>
-                        <el-form-item
-                            label=""
-                            prop="email"
-                        >
+                        <el-form-item label="" prop="email">
                             <el-input
                                 autocomplete="false"
                                 v-model="login.email"
@@ -33,10 +23,7 @@
                                 @blur="emailChecked"
                             ></el-input>
                         </el-form-item>
-                        <el-form-item
-                            label=""
-                            prop="password"
-                        >
+                        <el-form-item label="" prop="password">
                             <el-input
                                 autocomplete="false"
                                 v-model="login.password"
@@ -47,10 +34,9 @@
                         </el-form-item>
                         <el-form-item class="forget">
                             <router-link to="/forget">
-                                <el-link
-                                    type="primary"
-                                    :underline="false"
-                                >忘记密码</el-link>
+                                <el-link type="primary" :underline="false"
+                                    >忘记密码</el-link
+                                >
                             </router-link>
                         </el-form-item>
                         <el-form-item>
@@ -58,15 +44,17 @@
                                 type="primary"
                                 size="default"
                                 @click="submitForm('loginform')"
-                            >Login</el-button>
+                                >Login</el-button
+                            >
                         </el-form-item>
                         <el-form-item class="reg">
                             没有账号？
                             <el-link
                                 type="primary"
                                 :underline="false"
-                                href= '/signUp'
-                            >立即注册</el-link>
+                                href="/signUp"
+                                >立即注册</el-link
+                            >
                         </el-form-item>
                     </el-form>
                 </div>
@@ -122,7 +110,7 @@ export default {
             });
         },
         //当用户输入完邮箱后返回后台验证用户是否存在
-        emailChecked() { },
+        emailChecked() {},
     },
 };
 </script>

@@ -111,13 +111,13 @@ export default {
       this.pgstatus.lower = lowerReg.test(data.pwd) ? "success" : "warning";
       this.pgstatus.nomail = data.mail !== data.pwd ? "success" : "warning";
 
-    //   this.pgpercent.main = pwdStrength(newPwd);
-    //   this.pgstatus.main =
-    //     pwdStrength(newPwd) < 15
-    //       ? "exception"
-    //       : pwdStrength(newPwd) >= 15 && pwdStrength(newPwd) < 65
-    //       ? "warning"
-    //       : "success";
+      this.pgpercent.main = this.pwdStrength(newPwd);
+      this.pgstatus.main =
+        this.pwdStrength(newPwd) < 15
+          ? "warning"
+          : this.pwdStrength(newPwd) >= 15 && this.pwdStrength(newPwd) < 65
+          ? "warning"
+          : "success";
 
       if (
         this.pgpercent.pwdlength == 100 &&
@@ -131,16 +131,16 @@ export default {
         this.$emit("changePwdStatusEvent", false);
       }
 
-      // this.pgpercent.main = pwdStrength(newPwd)
-      // if(pwdStrength(newPwd)<15){
-      //     this.pgstatus.main = 'exception';
-      // }
-      // else if(pwdStrength(newPwd)>=15&&pwdStrength(newPwd)<65){
-      //     this.pgstatus.main = 'warning';
-      // }
-      // else if(pwdStrength(newPwd)>=65){
-      //     this.pgstatus.main = 'success';
-      // }
+      this.pgpercent.main = this.pwdStrength(newPwd)
+      if(this.pwdStrength(newPwd)<15){
+          this.pgstatus.main = 'warning';
+      }
+      else if(this.pwdStrength(newPwd)>=15&&this.pwdStrength(newPwd)<65){
+          this.pgstatus.main = 'warning';
+      }
+      else if(this.pwdStrength(newPwd)>=65){
+          this.pgstatus.main = 'success';
+      }
     },
     //监听mail传值后监听
     mail(newMail) {
@@ -148,36 +148,34 @@ export default {
     },
   },
   methods: {
-//     pwdStrength(pwd) {
-//       let strength = 0;
-//       let nomail = this.pgpercent.nomail;
-//       let pwdlength = this.pgpercent.pwdlength;
-//       let num = this.pgpercent.num;
-//       let upper = this.pgpercent.upper;
-//       let lower = this.pgpercent.lower;
+    pwdStrength(pwd) {
+      let strength = 0;
+      let nomail = this.pgpercent.nomail;
+      let pwdlength = this.pgpercent.pwdlength;
+      let num = this.pgpercent.num;
+      let upper = this.pgpercent.upper;
+      let lower = this.pgpercent.lower;
 
-//       strength += nomail * 0.05;
-//       strength += pwdlength * 0.2;
-//       strength += num * 0.1;
-//       strength += upper * 0.2;
-//       strength += lower * 0.2;
+      strength += nomail * 0.05;
+      strength += pwdlength * 0.2;
+      strength += num * 0.1;
+      strength += upper * 0.2;
+      strength += lower * 0.2;
 
-//       if (pwd.length >= 20) {
-//         strength = 100;
-//       }
-//       if (strength > 100) {
-//         strength = 100;
-//       }
-//       return strength;
-//     },
+      if (pwd.length >= 20) {
+        strength = 100;
+      }
+      if (strength > 100) {
+        strength = 100;
+      }
+      return strength;
+    },
   },
 };
 </script>
 <style scoped>
 .pwdRequired {
-  margin-top: 1%;
-  width: 50%;
-  margin-left: 15%;
+  width: 300px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }

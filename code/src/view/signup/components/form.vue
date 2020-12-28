@@ -27,15 +27,17 @@
                     @blur="pwdCheck"
                     :show-password="true"
                 ></el-input>
-                <transition name="slide">
-                    <!-- 此处写点击密码框弹出密码强度显示界面 -->
-                    <pwdRequired
-                        v-show="visible"
-                        :pwd="pwd"
-                        :mail="mail"
-                        @changePwdStatusEvent="changePwdStatus"
-                    ></pwdRequired>
-                </transition>
+                <div class="component">
+                    <transition name="slide">
+                        <!-- 此处写点击密码框弹出密码强度显示界面 -->
+                        <pwdRequired
+                            v-show="visible"
+                            :pwd="pwd"
+                            :mail="mail"
+                            @changePwdStatusEvent="changePwdStatus"
+                        ></pwdRequired>
+                    </transition>
+                </div>
             </el-form-item>
 
             <el-form-item label="Check Password">
@@ -50,11 +52,9 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button
-                    type="primary"
-                    @click="onSubmit"
-                    :disabled="disable"
-                >立即注册</el-button>
+                <el-button type="primary" @click="onSubmit" :disabled="disable"
+                    >立即注册</el-button
+                >
             </el-form-item>
         </el-form>
     </div>
@@ -163,14 +163,9 @@ export default {
     width: 50%;
     margin-left: -20%;
 }
-.title {
-    text-align: left;
-    font-size: 12px;
-    margin-bottom: 10px;
-}
-.title h3 {
-    margin-left: 10px;
-    margin-top: 5px;
+.component{
+    margin-top: 1%;
+    margin-left: 15%;
 }
 /* #form {
     width: 100%;

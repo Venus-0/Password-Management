@@ -6,11 +6,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-      activeStatus:0
+      activeStatus:0,
+      mailAddress:'',
     },
     mutations:{
-      changeActiveStatus(state, n){
-        state.activeStatus = n
+      changeActiveStatus(state, statusCode){
+        state.activeStatus = statusCode;
+      },
+      changeMailAddress(state,mail){
+        state.mailAddress = mail;
       }
     },
     getters:{

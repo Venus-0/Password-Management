@@ -50,7 +50,7 @@ export default new Router({
         {
           path: '',
           name: 'newPwd',
-          component: ()=> import('@/view/forget/components/newPwd')
+          component: ()=> import('@/view/forget/components/newPwd'),
         },
         {
           path: '',
