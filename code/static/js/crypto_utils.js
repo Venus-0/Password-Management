@@ -1,6 +1,6 @@
-'use strict';
+import MiscUtil from './misc_utils'
 function CryptoUtil() {}
-
+const callData = {isData:false,data:''};
 // 生成一个RSA 2048密钥对
 // @return CryptoKeyPair 生成的密钥对对象
 CryptoUtil.generateKeyPair = async () => {
@@ -107,9 +107,14 @@ CryptoUtil.encryptAES = async (text, key, iv) => {
     let encrypted = await window.crypto.subtle.encrypt({
         name: "AES-CBC",
         iv: iv
-    }, key, MiscUtil.stringToArrayBuffer(text));
-
-    return MiscUtil.base64UrlEncode(MiscUtil.arrayBufferToString(encrypted));
+    }, key, MiscUtil.stringToArrayBuffer(text)).catch(function (error) {
+        callData.isData = false;
+        callData.data = error;
+        return callData;
+    });
+    callData.isData = true;
+    callData.data =  MiscUtil.base64UrlEncode(MiscUtil.arrayBufferToString(encrypted));
+    return callData;
 }
 
 // 使用RSA-OAEP 2048bit加密
@@ -119,9 +124,14 @@ CryptoUtil.encryptAES = async (text, key, iv) => {
 CryptoUtil.encryptRSA = async (text, key) => {
     let encrypted = await window.crypto.subtle.encrypt({
         name: "RSA-OAEP"
-    }, key, MiscUtil.stringToArrayBuffer(text));
-
-    return MiscUtil.base64UrlEncode(MiscUtil.arrayBufferToString(encrypted));
+    }, key, MiscUtil.stringToArrayBuffer(text)).catch(function (error) {
+        callData.isData = false;
+        callData.data = error;
+        return callData;
+    });
+    callData.isData = true;
+    callData.data =  MiscUtil.base64UrlEncode(MiscUtil.arrayBufferToString(encrypted));
+    return callData;
 }
 
 // 使用AES-256-CBC解密
@@ -133,9 +143,14 @@ CryptoUtil.decryptAES = async (cipher, key, iv) => {
     let decrypted = await window.crypto.subtle.decrypt({
         name: "AES-CBC",
         iv: iv
-    }, key, MiscUtil.stringToArrayBuffer(MiscUtil.base64UrlDecode(cipher)));
-
-    return MiscUtil.arrayBufferToString(decrypted);
+    }, key, MiscUtil.stringToArrayBuffer(MiscUtil.base64UrlDecode(cipher))).catch(function (error) {
+        callData.isData = false;
+        callData.data = error;
+        return callData;
+    });
+    callData.isData = true;
+    callData.data =  MiscUtil.arrayBufferToString(decrypted);
+    return callData;
 }
 
 // 使用RSA-OAEP 2048bit解密
@@ -145,7 +160,13 @@ CryptoUtil.decryptAES = async (cipher, key, iv) => {
 CryptoUtil.decryptRSA = async (cipher, key) => {
     let decrypted = await window.crypto.subtle.decrypt({
         name: "RSA-OAEP"
-    }, key, MiscUtil.stringToArrayBuffer(MiscUtil.base64UrlDecode(cipher)));
-
-    return MiscUtil.arrayBufferToString(decrypted);
+    }, key, MiscUtil.stringToArrayBuffer(MiscUtil.base64UrlDecode(cipher))).catch(function (error) {
+        callData.isData = false;
+        callData.data = error;
+        return callData;
+    });
+    callData.isData = true;
+    callData.data =  MiscUtil.arrayBufferToString(decrypted);
+    return callData;
 }
+export {CryptoUtil}
