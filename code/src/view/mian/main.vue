@@ -1,7 +1,30 @@
 <template>
     <div class="mainForm">
         <el-container :direction="vertical" style="height: 100%">
-            <el-header> header </el-header>
+            <el-header style="height: 50px">
+                <el-row :gutter="0">
+                    <el-col :span="3" :offset="0">0</el-col>
+
+                    <el-col class="search" :span="8" :offset="1">
+                        <el-input  placeholder="搜索"  v-model="input3" size='small' class="input-with-select">
+                        <el-button
+                                slot="append"
+                                icon="el-icon-search"
+                        ></el-button>
+                        </el-input>
+                    </el-col>
+                    <el-col class="userFunc" :span="6" :offset="6">
+                        <i class="el-icon-user"></i>
+                        <label>{{ $store.state.mailAddress }}</label>
+                        <el-button
+                            class="setting"
+                            size="default"
+                            icon="el-icon-setting"
+                            circle
+                        ></el-button>
+                    </el-col>
+                </el-row>
+            </el-header>
 
             <el-container>
                 <el-aside width="200px"> aside </el-aside>
@@ -32,9 +55,25 @@ body {
     width: 100%;
     height: 100%;
 }
+.userFunc {
+    text-align: right;
+}
+.search,.userFunc{
+    margin-top: 0.5%;
+}
+.search{
+  
+}
+.setting {
+    background-color: #b8e9e5;
+    border: #ffffff;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+}
+.el-col {
+    
+}
 .el-header {
-    background-color: lightgray;
-    border: 1px red solid;
+    
 }
 .el-aside {
     background-color: lightcyan;

@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
       activeStatus:0,
-      mailAddress:'',
+      mailAddress:'949052312@qq.com',
     },
     mutations:{
       changeActiveStatus(state, statusCode){
