@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     state:{
       activeStatus:0,
       mailAddress:'949052312@qq.com',
+      userData:'[{"title":"导航1","menus":[{"item":"分栏1"},{"item":"分栏2"}]},{"title":"导航2"},{"title":"导航3"}]',
     },
     mutations:{
       changeActiveStatus(state, statusCode){
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
       },
       changeMailAddress(state,mail){
         state.mailAddress = mail;
+      },
+      setUserData(state,data){
+        state.userData = data;
       }
     },
     getters:{
