@@ -20,44 +20,59 @@
     </div>
 </template>
 <script>
+import {forget} from '../../../../static/js/forget'
 var timer;
+const data = {verify:'',recovery:''};
 export default {
     name: "mailCheck",
     data() {
         return {
             mail:'',
+            verifyData:{},
+            code:''
         };
     },
     methods: {
-        goNext() {
+        goNext(recovery) {
             this.$store.commit('changeActiveStatus', 1);
             this.$router.push({
-                name: 'recovery'
+                name: 'recovery',
+                params:{
+                    userIdRecovery:recovery
+                }
             })
         },
         getMail(){
             //用户输入邮箱后获取验证码
-            console.log(this.mail)
+            let that = this;
+            forget.sendMail(this.mail).then(function(res){
+                data.verify = res.verify;
+                data.recovery = res.recovery
+            });
             this.$store.commit('changeMailAddress',this.mail)
             this.wait(60,document.getElementById('getCode'));
         },
         checkCode(){
             //验证验证码
-            this.goNext();
+            console.log(data);
+            if(this.code == data.verify){
+                this.goNext(data.recovery);
+            }else{
+                alert('验证码错误')
+            }
+            
         }, 
         wait(time,obj){
             let wait = time;
               if (wait == 0) {
                 obj.removeAttribute("disabled");            
                 obj.innerHTML="获取验证码";
-                wait = 30;
             } else {
                 obj.setAttribute("disabled", true);
                 obj.innerHTML="重新发送("+ wait +")";
                 wait--;
                 let that = this;
                 timer = setTimeout(function() {
-                    console.log(wait);  
                     that.wait(wait,obj);
                 },1000)
             }

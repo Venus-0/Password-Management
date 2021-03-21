@@ -18,11 +18,11 @@ MiscUtil.stringToArrayBuffer = (str) => {
 
 // base64编码 (加号被替换成@用来网络传输)
 MiscUtil.base64UrlEncode = (text) => {
-    return btoa(text).replace(/\+/g, "@");
+    return btoa(text);
 }
 
 // base64解码
 MiscUtil.base64UrlDecode = (base64) => {
-    return atob(base64.replace(/\@/g, "+"));
+    return atob(base64);
 }
 export {MiscUtil}

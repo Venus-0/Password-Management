@@ -64,6 +64,8 @@
     </div>
 </template>
 <script>
+import {login} from '../../../static/js/login';
+var data;
 export default {
     name: "Login",
     data() {
@@ -101,16 +103,34 @@ export default {
     methods: {
         submitForm(formname) {
             //登录表单验证
+            let mail = this.login.emial;
+            let pwd = this.login.password;
+            let that = this;
             this.$refs[formname].validate((valid) => {
                 if (valid) {
-                    //返回后台
+                    login.decrypt(data,pwd,mail).then(function (res) { 
+                        if(!res){
+                            alert('密码错误');
+                        }else{
+                            that.$router.push({
+                                name:'main'
+                            })
+                            
+                        }
+                     })
                 } else {
                     return false;
                 }
             });
         },
         //当用户输入完邮箱后返回后台验证用户是否存在
-        emailChecked() {},
+        emailChecked() {
+            let mail = this.login.email;
+            login.checkMail(mail).then(function (res) { 
+                data = JSON.parse(res).data;
+                console.log(data);
+             })
+        },
     },
 };
 </script>

@@ -8,7 +8,7 @@
         </el-row>
          <el-row  :gutter="0">
             <el-col class="form" :span="12" :offset="6">
-                <el-input class="recoveryText" v-model="mail"  placeholder="输入您的恢复码" size="small" clearable >
+                <el-input class="recoveryText" v-model="recoveryKey"  placeholder="输入您的恢复码" size="small" clearable >
                     <el-button  slot="append"  size="default"  @click="checkRecovery()">确定</el-button>
                 </el-input>
             </el-col>
@@ -16,21 +16,30 @@
     </div>
 </template>
 <script>
+import {forget} from '../../../../static/js/forget'
 export default {
     name: 'recovery',
     data() {
-        return {}
+        return {
+            recoveryKey:''
+        }
     },
     methods: {
-        goNext(){
+        goNext(userID){
             this.$store.commit('changeActiveStatus', 2);
             this.$router.push({
-                name: 'newPwd'
+                name: 'newPwd',
+                params:{
+                    userID:userID
+                }
             })
         },
         checkRecovery(){
             //验证恢复码
-            this.goNext()
+            let userIdRecovery = this.$route.params.userIdRecovery;
+            forget.recovery(this.recoveryKey,userIdRecovery).then((res)=>{
+                this.goNext(res)
+            });
         }
     },
     mounted: function () {

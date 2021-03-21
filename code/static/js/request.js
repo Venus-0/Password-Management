@@ -5,15 +5,17 @@ request.setRequest = () =>{
     return httprequest;
 }
 
-request.sendRequest = (type,port,data) =>{
+request.sendRequest =  (type,port,data=null) =>{
     let httprequest = request.setRequest();
-    httprequest.open(type,port,true);//尚未设置端口
-    return httprequest.send(data);
+    httprequest.open(type,port,false);//尚未设置端口
+    httprequest.setRequestHeader('Content-Type','application/json');
+    httprequest.send(JSON.stringify(data));
+    return httprequest;
 }
 
 request.getRequest = async (res) =>{
     if(res.readyState == 4 && res.status == 200){
-        let receiveData = await res.response;
+        let receiveData =  res.response;
         return receiveData;
     }
     else{

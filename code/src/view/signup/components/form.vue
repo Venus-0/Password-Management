@@ -11,7 +11,7 @@
             <el-form-item label="Email">
                 <el-input
                     v-model="signform.email"
-                    placeholder="Emial"
+                    placeholder="Email"
                     clearable
                     @blur="email2Child"
                 ></el-input>
@@ -67,6 +67,7 @@ const infoStatus = {
     pwdReCheckStatus: false,
 };
 import pwdRequired from "./pwdRequired";
+import {signup} from "../../../../static/js/signup";
 export default {
     components: { pwdRequired },
     name: "signup",
@@ -111,6 +112,20 @@ export default {
         },
         onSubmit() {
             //注册提交事件
+            let that = this ;
+            signup
+                .processData(this.signform.email, this.signform.password)
+                .then(function (res) {
+                    
+                    if (!res) {
+                        alert("该账户已被注册");
+                    } else {
+                        alert("注册成功");
+                        that.$router.push({
+                            path: "/",
+                        });
+                    }
+                });
         },
         changeBtnStatus(status) {
             //改变提交按钮禁用状态
@@ -163,7 +178,7 @@ export default {
     width: 50%;
     margin-left: -20%;
 }
-.component{
+.component {
     margin-top: 1%;
     margin-left: 15%;
 }

@@ -7,8 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
       activeStatus:0,
-      mailAddress:'949052312@qq.com',
-      userData:'[{"title":"导航1","menus":[{"item":"分栏1"},{"item":"分栏2"}]},{"title":"导航2"},{"title":"导航3"}]',
+      mailAddress:'',
+      userData:'[{"title":"银行卡","menus":[{"item":"农业银行"},{"item":"建设银行"}]},{"title":"身份证"},{"title":"护照"}]',
     },
     mutations:{
       changeActiveStatus(state, statusCode){

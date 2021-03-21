@@ -68,6 +68,7 @@ const infoStatus = {
     pwdStatus: false,
     pwdReCheckStatus: false,
 };
+import {forget} from '../../../../static/js/forget'
 import pwdRequired from "@/view/signup/components/pwdRequired";
 export default {
     components: { pwdRequired },
@@ -97,7 +98,21 @@ export default {
         },
         onSubmit() {
             //注册提交事件
-            this.goNext()
+            let that = this;
+            let UID = this.$route.params.userID
+            let pwd = this.signform.password;
+            let mail = this.$store.state.mailAddress;
+            forget.newPwd(UID,pwd,mail).then(function (res) { 
+                if(res){
+                alert('修改成功')
+                this.goNext()
+            }
+            else{
+                alert('操作异常，请重试');
+            }
+             });
+            
+            
         },
         changeBtnStatus(status) {
             //改变提交按钮禁用状态
